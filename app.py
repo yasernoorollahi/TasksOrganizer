@@ -8,6 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db =SQLAlchemy(app)
 app.app_context().push()
 
+#application start
 @app.route('/',methods=['GET','POST'])
 def index():
     if request.method == 'POST':
