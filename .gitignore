@@ -1,4 +1,4 @@
 #ignore extentions
 
 *.docx
-
+.DS_Store
