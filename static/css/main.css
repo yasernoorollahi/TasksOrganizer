@@ -1,0 +1,19 @@
+body {
+  margin: auto;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.content {
+  margin: auto;
+  width: 50%;
+  border: 1px solid;
+  padding: 10px;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+  margin: auto;
+}
