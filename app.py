@@ -14,7 +14,6 @@ def index():
     if request.method == 'POST':
         task_content= request.form['content']
         new_task= Todo(content=task_content)
-    
         try:
             db.session.add(new_task)
             db.session.commit()
@@ -49,6 +48,8 @@ def delete(id):
         return 'There was an error deleting that task'
 
 
+
+#this is a test commit
 @app.route('/update/<int:id>', methods=['GET','POST'])
 def update(id):
     task = Todo.query.get_or_404(id)
