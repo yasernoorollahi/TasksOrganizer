@@ -9,6 +9,7 @@ db =SQLAlchemy(app)
 app.app_context().push()
 
 #application start
+#appplication
 @app.route('/',methods=['GET','POST'])
 def index():
     if request.method == 'POST':
