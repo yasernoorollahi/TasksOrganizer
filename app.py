@@ -33,40 +33,32 @@ def load_user(user_id):
 @app.route('/',methods=['GET','POST'])
 def index():
     return render_template('index.html')
-    # if request.method == 'POST':
-    #     task_content= request.form['content']
-    #     new_task= Todo(content=task_content)
-    #     try:
-    #         db.session.add(new_task)
-    #         db.session.commit()
-    #         return redirect('/')
-    #     except:
-    #         return 'there was an error adding new task'
-        
-    # else:
-    #     tasks = Todo.query.order_by(Todo.date_created).all()
-    #     return render_template('index.html', tasks = tasks)
 
 
 
 
 
-@app.route('/dashboard', methods=['GET','POST'])
+
+@app.route('/tasks', methods=['GET','POST'])
 @login_required
-def dashboard():
+def tasks():
     if request.method == 'POST':
         task_content= request.form['content']
         new_task= Todo(content=task_content)
         try:
             db.session.add(new_task)
             db.session.commit()
-            return redirect('/dashboard')
+            return redirect('/tasks')
         except:
             return 'there was an error adding new task'
-    else:
-        tasks = Todo.query.order_by(Todo.date_created).all()
-        # return render_template('index.html', tasks = tasks)
-        return render_template('dashboard.html', tasks=tasks)
+    else:   
+        page = request.args.get('page',1 , type=int)
+        tasks = Todo.query.order_by(Todo.date_created.desc()).paginate(page = page, per_page=5)
+        return render_template('tasks.html', tasks=tasks)
+
+
+
+
 
 
 @app.route('/login', methods=['GET','POST'])
@@ -82,6 +74,14 @@ def login():
         
     return render_template('login.html',form=form)
  
+
+@app.route('/dashboard', methods=['GET','POST'])
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
+
+
+
 
 @app.route('/logout', methods=['GET','POST'])
 @login_required
@@ -153,7 +153,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/dashboard')
+        return redirect('/tasks')
     except:
         return 'There was an error deleting that task'
 
@@ -169,7 +169,7 @@ def update(id):
         task.content = request.form['content']
         try:
             db.session.commit()
-            return redirect('/dashboard')
+            return redirect('/tasks')
         except:
             return 'There was an issue updating the task'
     else:
