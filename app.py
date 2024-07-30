@@ -2,10 +2,13 @@ from flask import Flask, render_template, request,url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db =SQLAlchemy(app)
 app.app_context().push()
+
+
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -18,8 +21,7 @@ def index():
             return redirect('/')
         except:
             return 'there was an error adding new task'
-
-
+        
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
         return render_template('index.html', tasks = tasks)
