@@ -32,32 +32,46 @@ def load_user(user_id):
 
 @app.route('/',methods=['GET','POST'])
 def index():
+    return render_template('index.html')
+    # if request.method == 'POST':
+    #     task_content= request.form['content']
+    #     new_task= Todo(content=task_content)
+    #     try:
+    #         db.session.add(new_task)
+    #         db.session.commit()
+    #         return redirect('/')
+    #     except:
+    #         return 'there was an error adding new task'
+        
+    # else:
+    #     tasks = Todo.query.order_by(Todo.date_created).all()
+    #     return render_template('index.html', tasks = tasks)
+
+
+
+
+
+@app.route('/dashboard', methods=['GET','POST'])
+@login_required
+def dashboard():
     if request.method == 'POST':
         task_content= request.form['content']
         new_task= Todo(content=task_content)
         try:
             db.session.add(new_task)
             db.session.commit()
-            return redirect('/')
+            return redirect('/dashboard')
         except:
             return 'there was an error adding new task'
-        
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
-        return render_template('index.html', tasks = tasks)
-    
-
-
-@app.route('/dashboard', methods=['GET','POST'])
-@login_required
-def dashboard():
-    return render_template('dashboard.html')
+        # return render_template('index.html', tasks = tasks)
+        return render_template('dashboard.html', tasks=tasks)
 
 
 @app.route('/login', methods=['GET','POST'])
 def login():
     form=LoginForm()
-
     if form.validate_on_submit():
         user = User.query.filter_by(username= form.username.data).first()
         if user:
@@ -139,7 +153,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/')
+        return redirect('/dashboard')
     except:
         return 'There was an error deleting that task'
 
@@ -155,7 +169,7 @@ def update(id):
         task.content = request.form['content']
         try:
             db.session.commit()
-            return redirect('/')
+            return redirect('/dashboard')
         except:
             return 'There was an issue updating the task'
     else:
