@@ -1,20 +1,13 @@
-{% extends 'base.html' %}
-
-{% block head %} 
-
-{% endblock %}
-
-{% block body%}
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body%}
 
 <div class="content content">
-    <h1>Update Task</h1>
-<br />
+  <h1>Update Task</h1>
+  <br />
 
-<br />
-    <form action="/update/{{task.id}}" method="POST">
-        <input type="text" name="content" id="content" value="{{task.content}}"/>
-        <input type="submit" value="Update Task" />
-
-    </form>
+  <br />
+  <form action="/update/{{task.id}}" method="POST">
+    <input type="text" name="content" id="content" value="{{task.content}}" />
+    <input type="submit" value="Update Task" />
+  </form>
 </div>
 {% endblock %}

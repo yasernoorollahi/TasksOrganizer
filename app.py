@@ -140,8 +140,8 @@ class RegisterForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[InputRequired(),Length(min=4,max=20)],render_kw={"placeholder":"username"} )
-    password = PasswordField(validators=[InputRequired(),Length(min=4,max=5)],render_kw={"placeholder":"password"})
+    username = StringField(validators=[InputRequired(),Length(min=4,max=20)],render_kw={"placeholder":"Username"} )
+    password = PasswordField(validators=[InputRequired(),Length(min=4,max=5)],render_kw={"placeholder":"Password"})
     submit = SubmitField("login")
 
 

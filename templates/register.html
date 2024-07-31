@@ -1,17 +1,9 @@
-{% extends 'base.html' %}
-
-{% block head %} 
-
-{% endblock %}
-
-{% block body%}
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body%}
 <div class="content">
-    <h1>Register Page</h1>
+  <h1>Register Page</h1>
 
-
-<form method="POST" action="">
-    {{ form.hidden_tag() }}
-    {{form.username }}
+  <form method="POST" action="">
+    {{ form.hidden_tag() }} {{form.username }}
     <br />
     <br />
     {{form.password}}
@@ -21,10 +13,8 @@
     <br />
     <br />
     <br />
-</form>
+  </form>
 
-
-    <a href="{{ url_for('login')}}"> Already have an account? Login</a>
-
+  <a href="{{ url_for('login')}}"> Already have an account? Login</a>
 </div>
 {% endblock%}
