@@ -1,12 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body%}
 
-{% block head %} 
-
-{% endblock %}
-
-{% block body%}
-
-<h1>Hello  You are logged in. {{current_user.username}}</h1>
+<h1>Hello You are logged in. {{current_user.username}}</h1>
 
 <a href="{{url_for('tasks') }}">Tasks Manager</a>
 
@@ -15,5 +9,5 @@
 <br />
 
 <a href="{{ url_for('logout')}}"> Press Here to Logout</a>
- 
-    {% endblock %}
+
+{% endblock %}
