@@ -28,7 +28,9 @@ def load_user(user_id):
 
 
 
-
+@app.route('/buttons')
+def buttons():
+    return render_template('components/buttons.html')
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -88,6 +90,7 @@ def dashboard():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
 
 
 

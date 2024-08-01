@@ -10,10 +10,36 @@
       href="{{url_for('static', filename='css/output.css')}}"
     />
 
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="/static/assets/images/logos/favicon.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"
+    />
+    <!-- Core Css -->
+
+    <link rel="stylesheet" href="/static/assets/css/theme.css" />
+
     {% block head%} {% endblock %}
   </head>
 
   <body>
     {% block body%} {% endblock %}
+
+    <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="/static/assets/libs/iconify-icon/dist/iconify-icon.min.js"></script>
+    <script src="/static/assets/libs/@preline/dropdown/index.js"></script>
+    <script src="/static/assets/libs/@preline/overlay/index.js"></script>
+    <script src="/static/assets/js/sidebarmenu.js"></script>
+    <script src="/static/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/static/assets/js/dashboard.js"></script>
   </body>
 </html>
