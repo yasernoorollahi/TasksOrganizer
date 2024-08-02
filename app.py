@@ -9,6 +9,7 @@ from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db =SQLAlchemy(app)
 app.app_context().push()
 app.config['SECRET_KEY'] = 'thisisasecretkey'
@@ -25,9 +26,30 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+@app.route('/sample_page')
+def sample_page():
+    return render_template('components/sample-page.html')
+
+@app.route('/cards')
+def cards():
+    return render_template('components/cards.html')
+
+
+
+@app.route('/alerts')
+def alerts():
+    return render_template('components/alerts.html')
+
+
+
+@app.route('/typography')
+def typography():
+    return render_template('components/typography.html')
+
+
 @app.route('/forms')
 def forms():
-    return "this is form page"
+    return render_template('components/forms.html')
 
 
 
@@ -79,6 +101,7 @@ def login():
         
     return render_template('login.html',form=form)
  
+
 
 @app.route('/dashboard', methods=['GET','POST'])
 @login_required
