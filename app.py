@@ -25,6 +25,9 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+@app.route('/forms')
+def forms():
+    return "this is form page"
 
 
 
