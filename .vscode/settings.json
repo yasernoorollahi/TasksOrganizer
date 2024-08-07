@@ -1,6 +1,3 @@
 {
-    "cSpell.words": [
-        "sqlalchemy",
-        "wtforms"
-    ]
+  "cSpell.words": ["jsonify", "sqlalchemy", "wtforms"]
 }
