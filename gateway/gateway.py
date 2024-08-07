@@ -8,7 +8,8 @@ from wtforms.validators import InputRequired,Length, ValidationError
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/yaser/Downloads/PythonProjects/FlaskIntroduction/gateway/test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db =SQLAlchemy(app)
 app.app_context().push()
