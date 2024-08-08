@@ -1,15 +1,24 @@
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
+from models import User
+from common.sqlite_setup import db,init_db
+
+
+
 
 app =Flask(__name__)
 api = Api(app)
+init_db(app)
+
 
 
 users={}
 
 class UserResource(Resource):
     def post(self):
-        return{'data':'user data'}
+        user_list= User.query.first()
+
+        return jsonify(user_list)
         # user_id= request.json.get('id')
         # user_data = request.json.get('data')
         # users[user_id]= user_data

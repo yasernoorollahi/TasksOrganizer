@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request,url_for, redirect
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -9,9 +9,9 @@ from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db =SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db =SQLAlchemy(app)
 app.app_context().push()
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 bcrypt=Bcrypt(app)
@@ -151,10 +151,10 @@ class Todo(db.Model):
 
 
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
-    username=db.Column(db.String(20), nullable=False)
-    password= db.Column(db.String(80), nullable=False)
+# class User(db.Model, UserMixin):
+#     id = db.Column(db.Integer, primary_key=True, unique=True)
+#     username=db.Column(db.String(20), nullable=False)
+#     password= db.Column(db.String(80), nullable=False)
 
 
 
