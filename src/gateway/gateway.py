@@ -8,6 +8,7 @@ from wtforms.validators import InputRequired,Length, ValidationError
 from flask_bcrypt import Bcrypt
 from common.sqlite_setup import db,init_db
 
+
 app = Flask(__name__)
 
 init_db(app)
