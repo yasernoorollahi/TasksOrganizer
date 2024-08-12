@@ -1,23 +1,29 @@
 from fastapi import FastAPI
 from common.enums import Colors
-
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from models import Base,User
+from common.sqlite_setup import db,init_db
 
 
 
 app=FastAPI()
+init_db(app)
 
 
 @app.get('/colors/{color_item}')
-async def colors(color_item: Colors):
+async def colors(color: Colors):
 
-    if color_item == Colors.GREEN:
-        return {'color name': color_item, 'message':'you selected green'}
+    if color == Colors.GREEN:
+        return {'color name': color, 'message':'you selected green'}
     
-    if color_item  == Colors.BLUE:
-        return {'color name': color_item, 'message': 'you selected blue'}
+    if color  == Colors.BLUE:
+        return {'color name': color, 'message': 'you selected blue'}
     
     else:
-        return {'color name': color_item , 'message':'i like red'}
+        return {'color name': color , 'message':'i like red'}
+
+
 
 
 
@@ -33,10 +39,18 @@ async def post():
 async def put():
     return {'message':'hello from the put route'}
 
-@app.get('/items')
-async def list_items():
-    return {'message': 'list item route '}
+# @app.get('/items')
+# async def list_items():
+#     return {'message': 'list item route '}
+
+# @app.get('/items/{item_id}')
+# async def get_item(item_id:int):
+#     return {'item':item_id}
+
 
 @app.get('/items/{item_id}')
-async def get_item(item_id:int):
-    return {'item':item_id}
+async def read_items(item_id,skip: int=0, limit: int=10,short:bool=False):
+    if short:
+        return {'item_id':item_id,'skip': skip, 'limit': limit , 'short':short}
+    if not short:
+        return {'message':'short == false'}
