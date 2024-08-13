@@ -1,14 +1,14 @@
 from fastapi import FastAPI
-from common.enums import Colors
+from src.common.local_enums import Colors
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base,User
-from common.sqlite_setup import db,init_db
+ 
 
 
 
 app=FastAPI()
-init_db(app)
+ 
 
 
 @app.get('/colors/{color_item}')

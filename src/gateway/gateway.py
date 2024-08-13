@@ -6,12 +6,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField, SubmitField
 from wtforms.validators import InputRequired,Length, ValidationError
 from flask_bcrypt import Bcrypt
-from src.common.db_setup import db,init_db
+from common.db_setup import DBSetup,db
 
 
 app = Flask(__name__)
 
-init_db(app)
+DBSetup.init_db(app)
 
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
