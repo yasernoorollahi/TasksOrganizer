@@ -10,16 +10,7 @@ from common.db_setup_flask import DBSetup,db
 
 
 app = Flask(__name__)
-
 DBSetup.init_db(app)
-
-
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db =SQLAlchemy(app)
-
-
-
-# app.app_context().push()
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 bcrypt=Bcrypt(app)
 
@@ -218,4 +209,4 @@ def update(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
