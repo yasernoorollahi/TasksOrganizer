@@ -1,6 +1,4 @@
- 
 from flask_sqlalchemy import SQLAlchemy
- 
 from common.local_enums import Framework
 from termcolor import colored
 
@@ -24,7 +22,7 @@ db_initialized= False
 
 class DBSetup:
 
-    
+
     def init_db(app):
         global db_initialized
         if db_initialized:
