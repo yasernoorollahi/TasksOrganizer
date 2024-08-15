@@ -5,21 +5,6 @@ from termcolor import colored
 db =SQLAlchemy()
 db_initialized= False
 
-
-
-# def __init__(self, db_url= None, framework = Framework.NONE):
-#     self.framework = framework
-#     try:
-#         if framework == Framework.SQLALCHEMY:
-#             self.db_url = db_url or f"sqlite:///./new_db.db"
-#             self.engine= create_engine(self.db_url)
-#             self.SessionLocal = sessionmaker(autoflush=False, autocommit= False, bind=self.engine)
-
-#     except Exception as e:
-#         print(f'Error initializing database connection: {e}')
-
-
-
 class DBSetup:
 
 
