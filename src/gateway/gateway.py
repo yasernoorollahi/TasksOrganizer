@@ -6,7 +6,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField, SubmitField
 from wtforms.validators import InputRequired,Length, ValidationError
 from flask_bcrypt import Bcrypt
-from src.common.db_setup_flask import DBSetup,db
+from common.db_setup_flask import DBSetup,db
 
 
 app = Flask(__name__)
