@@ -7,7 +7,8 @@ from wtforms import StringField,PasswordField, SubmitField
 from wtforms.validators import InputRequired,Length, ValidationError
 from flask_bcrypt import Bcrypt
 from common.db_setup_flask import DBSetup,db
-
+from models.user_mdl import User
+from models.todo_mdl import Todo
 
 app = Flask(__name__)
 DBSetup.init_db(app)
@@ -23,6 +24,7 @@ login_manager.loginview ="login"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 
 @app.route('/sample_page')
@@ -109,9 +111,6 @@ def dashboard():
 
 
 
-
-
-
 @app.route('/logout', methods=['GET','POST'])
 @login_required
 def logout():
@@ -135,24 +134,6 @@ def register():
 
     return render_template('register.html', form=form)
 
-
-
-
-class Todo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(200), nullable=False)
-    completed = db.Column(db.Integer, default=0)
-    date_created = db.Column(db.DateTime, default=datetime.now)
-
-    def __repr__(self):
-        return '<Task %>' % self.id
-
-
-
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
-    username=db.Column(db.String(20), nullable=False)
-    password= db.Column(db.String(80), nullable=False)
 
 
 
