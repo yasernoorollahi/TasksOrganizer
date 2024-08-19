@@ -1,30 +1,42 @@
-from flask import Flask, render_template, request,url_for, redirect
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from flask import Flask, render_template, request,url_for, redirect, current_app
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
-from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField, SubmitField
-from wtforms.validators import InputRequired,Length, ValidationError
 from flask_bcrypt import Bcrypt
 from common.db_setup_flask import DBSetup,db
-from models.user_mdl import User
-from models.todo_mdl import Todo
 from blueprints.auth.routes import auth_bp
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasecretkey'
+
 DBSetup.init_db(app)
 bcrypt= Bcrypt(app)
 
 
-app.register_blueprint(auth_bp, url_prefix = '/auth')
+
+@app.before_request
+def before_request():
+    # Set bcrypt in the application context
+    current_app.bcrypt = bcrypt
+ 
+
+app.register_blueprint(auth_bp, url_prefix = '/auth',template_folder='templates')
+
+@app.route('/',methods=['GET','POST'])
+def index():
+    return render_template('index.html')
+
+
+
+
 
 
 if __name__ == '__main__':
     app.run()
-login_manager=LoginManager()
-login_manager.init_app(app)
-login_manager.loginview ="login"
+    
+# login_manager=LoginManager()
+# login_manager.init_app(app)
+# login_manager.loginview ="login"
+
+
 
 
 
@@ -66,9 +78,6 @@ login_manager.loginview ="login"
 # def buttons():
 #     return render_template('components/buttons.html')
 
-# @app.route('/',methods=['GET','POST'])
-# def index():
-#     return render_template('index.html')
 
 
 
