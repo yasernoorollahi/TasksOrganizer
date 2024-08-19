@@ -22,11 +22,9 @@ app.register_blueprint(auth_bp, url_prefix = '/auth')
 
 if __name__ == '__main__':
     app.run()
-# login_manager=LoginManager()
-# login_manager.init_app(app)
-# login_manager.loginview ="login"
-
-
+login_manager=LoginManager()
+login_manager.init_app(app)
+login_manager.loginview ="login"
 
 
 
