@@ -3,22 +3,26 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 from flask_bcrypt import Bcrypt
 from common.db_setup_flask import DBSetup,db
 from blueprints.auth.routes import auth_bp
+from blueprints.dashboard.routes import dashboard_bp
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 
 DBSetup.init_db(app)
 bcrypt= Bcrypt(app)
-
+login_manager=LoginManager(app)
 
 
 @app.before_request
 def before_request():
     # Set bcrypt in the application context
     current_app.bcrypt = bcrypt
+    current_app.login_manager= login_manager
  
 
 app.register_blueprint(auth_bp, url_prefix = '/auth',template_folder='templates')
+app.register_blueprint(dashboard_bp, url_prefix = '/dashboard', template_folder='templates')
+
 
 @app.route('/',methods=['GET','POST'])
 def index():

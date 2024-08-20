@@ -30,6 +30,7 @@ def login():
 
 @auth_bp.route('/register', methods=['GET','POST'])
 def register():
+    bcrypt = current_app.bcrypt
     form=RegisterForm()
 
     if form.validate_on_submit():
