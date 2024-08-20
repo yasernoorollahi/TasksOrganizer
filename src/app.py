@@ -48,7 +48,7 @@ def index():
 #line 131 = >href="{{url_for('forms')}}"
 #line 141 = >href="{{url_for('typography')}}"
 #line 158 =>href="{{url_for('sample_page')}}"
-#line 175 = >href="{{url_for('logout')}}"
+
 
 
 

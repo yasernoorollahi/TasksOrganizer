@@ -3,7 +3,7 @@ from models.user_mdl import User
 from blueprints.auth.auth_forms import LoginForm, RegisterForm
 from flask_login import login_user
 from common.db_setup_flask import db
-
+from flask_login import login_required, logout_user
 
  
 
@@ -42,3 +42,12 @@ def register():
 
 
     return render_template('register.html', form=form)
+
+
+
+
+@auth_bp.route('/logout', methods=['GET','POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
