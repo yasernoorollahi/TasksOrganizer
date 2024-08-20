@@ -4,14 +4,23 @@ from flask_bcrypt import Bcrypt
 from common.db_setup_flask import DBSetup,db
 from blueprints.auth.routes import auth_bp
 from blueprints.dashboard.routes import dashboard_bp
+from blueprints.tasks.routes import tasks_bp
+from models.user_mdl import User
+
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 
 DBSetup.init_db(app)
 bcrypt= Bcrypt(app)
-login_manager=LoginManager(app)
+login_manager=LoginManager()
+login_manager.init_app(app)
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @app.before_request
 def before_request():
@@ -22,6 +31,8 @@ def before_request():
 
 app.register_blueprint(auth_bp, url_prefix = '/auth',template_folder='templates')
 app.register_blueprint(dashboard_bp, url_prefix = '/dashboard', template_folder='templates')
+app.register_blueprint(tasks_bp, url_prefix='/tasks', template_folder = 'templates')
+
 
 
 @app.route('/',methods=['GET','POST'])
@@ -30,6 +41,14 @@ def index():
 
 
 
+#base.html =>
+#line 103 => href="{{url_for('buttons')}}"
+#line 112 =>   href="{{url_for('alerts')}}"
+#line 122 => href="{{url_for('cards')}}"
+#line 131 = >href="{{url_for('forms')}}"
+#line 141 = >href="{{url_for('typography')}}"
+#line 158 =>href="{{url_for('sample_page')}}"
+#line 175 = >href="{{url_for('logout')}}"
 
 
 
