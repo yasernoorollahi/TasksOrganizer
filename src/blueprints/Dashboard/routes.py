@@ -1,19 +1,13 @@
-from flask import Blueprint, current_app, render_template
+from flask import Blueprint, current_app, render_template , jsonify
 from common.db_setup_flask import db
 from flask_login import  login_user, LoginManager, login_required, logout_user, current_user
-from models.user_mdl import User
+from models.todo_mdl import Todo
+
+
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
 
-
-# def login_manager():
-#     login_manager.loginview ="login"
-
-
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(int(user_id))
 
 
 @dashboard_bp.route('/dashboard', methods=['GET','POST'])
@@ -53,3 +47,21 @@ def forms():
 @dashboard_bp.route('/buttons')
 def buttons():
     return render_template('components/buttons.html')
+
+
+
+@dashboard_bp.route('/chart-data')
+def get_chart_data():
+    data ={
+        'Name' : 'Earnings This Month:',
+        'data' :[100,150,200,250,300,350,390,400]
+    }
+    data1 = {
+        'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        'values': [30, 40, 35, 50, 49, 60, 70]
+    }
+
+    completed_tasks = Todo.query.order_by(Todo.completed==1).all()
+    
+    return jsonify(data1)
+    

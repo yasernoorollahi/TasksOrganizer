@@ -13,7 +13,7 @@ tasks_bp = Blueprint('tasks', __name__)
 def tasks():
     if request.method == 'POST':
         task_content= request.form['content']
-        new_task= Todo(content=task_content)
+        new_task= Todo(content=task_content,completed=1)
         try:
             db.session.add(new_task)
             db.session.commit()
