@@ -1,7 +1,7 @@
-from  flask import Blueprint, render_template, redirect, url_for, request, current_app,g
+from  flask import Blueprint, render_template, redirect, url_for, request, current_app
 from models.user_mdl import User
 from blueprints.auth.auth_forms import LoginForm, RegisterForm
-from flask_login import login_user
+from flask_login import login_user, current_user
 from common.db_setup_flask import db
 from flask_login import login_required, logout_user
 
@@ -16,6 +16,8 @@ auth_bp = Blueprint('auth', __name__)
 def login():
     bcrypt = current_app.bcrypt
     form=LoginForm()
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard.dashboard'))
     if form.validate_on_submit():
         user = User.query.filter_by(username= form.username.data).first()
         if user:

@@ -21,3 +21,35 @@ dashboard_bp = Blueprint('dashboard', __name__)
 def dashboard():
     return render_template('dashboard.html')
 
+
+@dashboard_bp.route('/sample_page')
+def sample_page():
+    return render_template('components/sample-page.html')
+
+
+@dashboard_bp.route('/cards')
+def cards():
+    return render_template('components/cards.html')
+
+
+
+@dashboard_bp.route('/alerts')
+def alerts():
+    return render_template('components/alerts.html')
+
+
+
+@dashboard_bp.route('/typography')
+def typography():
+    return render_template('components/typography.html')
+
+
+@dashboard_bp.route('/forms')
+def forms():
+    return render_template('components/forms.html')
+
+
+
+@dashboard_bp.route('/buttons')
+def buttons():
+    return render_template('components/buttons.html')

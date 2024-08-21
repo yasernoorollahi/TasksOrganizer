@@ -42,13 +42,13 @@ def index():
 
 
 #base.html =>
-#line 103 => href="{{url_for('buttons')}}"
-#line 112 =>   href="{{url_for('alerts')}}"
-#line 122 => href="{{url_for('cards')}}"
-#line 131 = >href="{{url_for('forms')}}"
-#line 141 = >href="{{url_for('typography')}}"
-#line 158 =>href="{{url_for('sample_page')}}"
-
+#line 103 => 
+#line 112 =>   
+#line 122 => 
+#line 131 = >
+#line 141 = >
+#line 158 =>
+#line 175 = >href="{{url_for('logout')}}"
 
 
 
@@ -70,9 +70,6 @@ if __name__ == '__main__':
 
 
 
-# @app.route('/sample_page')
-# def sample_page():
-#     return render_template('components/sample-page.html')
 
 # @app.route('/cards')
 # def cards():
