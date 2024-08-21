@@ -2,7 +2,7 @@ from flask import Blueprint, current_app, render_template , jsonify
 from common.db_setup_flask import db
 from flask_login import  login_user, LoginManager, login_required, logout_user, current_user
 from models.todo_mdl import Todo
-
+from sqlalchemy import func
 
 
 dashboard_bp = Blueprint('dashboard', __name__)
@@ -52,16 +52,39 @@ def buttons():
 
 @dashboard_bp.route('/chart-data')
 def get_chart_data():
-    data ={
-        'Name' : 'Earnings This Month:',
-        'data' :[100,150,200,250,300,350,390,400]
-    }
-    data1 = {
-        'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-        'values': [30, 40, 35, 50, 49, 60, 70]
-    }
+    # data ={
+    #     'Name' : 'Earnings This Month:',
+    #     'data' :[100,150,200,250,300,350,390,400]
+    # }
+    # data1 = {
+    #     'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    #     'values': [30, 40, 35, 50, 49, 60, 70]
+    # }
 
-    completed_tasks = Todo.query.order_by(Todo.completed==1).all()
+    # tasks = Todo.query.all()
+    # daily_tasks= Todo.query.group_by(Todo.date_created)
+    # daily_tasks.count()
     
-    return jsonify(data1)
+    # labels = [task.content for task in tasks]
+    # values = [task.date_created for  task in tasks]
+    
+    # tasks_data ={
+    #     'labels': labels,
+    #     'values': values
+    # }
+    
+    
+ 
+    daily_tasks = Todo.query.with_entities(func.date(Todo.date_created).label('date'), func.count(Todo.id).label('count')).group_by(func.date(Todo.date_created)).all()
+    
+    labels = [str(task.date) for task in daily_tasks]  # Dates as strings
+    values = [task.count for task in daily_tasks]  # Corresponding counts
+
+    # 3. Create the JSON structure
+    tasks_data = {
+    'labels': labels,  # List of dates
+    'values': values   # List of counts for each date
+}
+
+    return jsonify(tasks_data)
     

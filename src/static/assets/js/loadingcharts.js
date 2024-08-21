@@ -5,12 +5,17 @@ async function fetchDataAndRenderChart() {
     const options = {
       series: [
         {
-          name: 'Sales',
+          name: 'Task Names',
           data: data.values, // Use the fetched data
         },
+        //adding completed tasks
+        // {
+        //   name: 'Completed Tasks:',
+        //   data: data.values,
+        // },
       ],
       chart: {
-        type: 'line',
+        type: 'bar',
         height: 350,
       },
       xaxis: {
