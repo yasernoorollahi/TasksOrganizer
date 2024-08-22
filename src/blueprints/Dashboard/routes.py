@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, render_template , jsonify
 from common.db_setup_flask import db
 from flask_login import  login_user, LoginManager, login_required, logout_user, current_user
-from models.todo_mdl import Todo
+from models.task_mdl import Tasks
 from sqlalchemy import func
 
 
@@ -75,7 +75,7 @@ def get_chart_data():
     
     
  
-    daily_tasks = Todo.query.with_entities(func.date(Todo.date_created).label('date'), func.count(Todo.id).label('count')).group_by(func.date(Todo.date_created)).all()
+    daily_tasks = Tasks.query.with_entities(func.date(Tasks.date_created).label('date'), func.count(Tasks.id).label('count')).group_by(func.date(Tasks.date_created)).all()
     
     labels = [str(task.date) for task in daily_tasks]  # Dates as strings
     values = [task.count for task in daily_tasks]  # Corresponding counts
