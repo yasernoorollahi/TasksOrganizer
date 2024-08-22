@@ -3,23 +3,23 @@ async function fetchDataAndRenderChart() {
     const response = await fetch('/dashboard/chart-data');
     const data = await response.json();
     const options = {
-      series: [
-        {
-          name: 'Task Names',
-          data: data.values, // Use the fetched data
-        },
-        //adding completed tasks
-        // {
-        //   name: 'Completed Tasks:',
-        //   data: data.values,
-        // },
-      ],
       chart: {
         type: 'bar',
         height: 350,
       },
+      colors: ['#5D87FF', '#4CAF50'],
+      series: [
+        {
+          name: 'Tasks',
+          data: data.values,
+        },
+        {
+          name: 'completed tasks',
+          data: [30, 7, 17, 3],
+        },
+      ],
       xaxis: {
-        categories: data.labels, // Use the fetched labels
+        categories: data.labels,
       },
     };
 

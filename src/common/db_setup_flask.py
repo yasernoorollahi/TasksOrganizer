@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from common.local_enums import Framework
 from termcolor import colored
+from flask_migrate import Migrate
+
 
 db =SQLAlchemy()
 db_initialized= False
@@ -17,6 +19,7 @@ class DBSetup:
         print(colored('--- Database Path = Users/yaser/Downloads/PythonProjects/FlaskIntroduction/src/test.db',color='green',attrs=['bold']))
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         db.init_app(app)
+        migrate = Migrate(app,db)
         print(colored('after init app',color='red', attrs=['bold']))
         with app.app_context():
             db.create_all()
