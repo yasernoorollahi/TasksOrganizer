@@ -7,7 +7,7 @@ async function fetchDataAndRenderChart() {
         type: 'bar',
         height: 350,
       },
-      colors: ['#5D87FF', '#4CAF50'],
+      colors: ['#5D87FF', '#49BEFF'],
       series: [
         {
           name: 'Tasks',

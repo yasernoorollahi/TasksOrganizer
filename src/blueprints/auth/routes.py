@@ -1,4 +1,4 @@
-from  flask import Blueprint, render_template, redirect, url_for, request, current_app
+from  flask import Blueprint, render_template, redirect, url_for, request, current_app,jsonify
 from models.user_mdl import User
 from blueprints.auth.auth_forms import LoginForm, RegisterForm
 from flask_login import login_user, current_user
@@ -53,3 +53,15 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
+
+@auth_bp.route('/get-all-users')
+@login_required
+def get_all_users():
+    try:
+        all_users = User.query.all()
+        user_list =[{'id':user.id, 'username': user.username} for user in all_users]
+        return jsonify(user_list)
+        
+    except Exception as e:
+        print(f'error fetching data from database {e}')
+        return jsonify({'error:' 'Internal Server Error'}),500

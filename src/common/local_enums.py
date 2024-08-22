@@ -1,5 +1,20 @@
 from enum import Enum
 
+
+
+class TaskStatus(Enum):
+    TODO = 'todo'
+    IN_PROGRESS = 'in progress'
+    DONE = 'done'
+
+class PriorityLevel(Enum):
+    LOW = 'low',
+    MEDIUM = 'medium'
+    HIGH = 'high'
+    CRITICAL = 'critical'
+    
+    
+
 class Colors(Enum):
     RED= 'red'
     BLUE= 'blue'
