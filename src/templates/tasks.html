@@ -29,11 +29,67 @@
               <h6 class="text-lg text-gray-600 font-semibold">Task Manager</h6>
               <div class="card">
                 <div class="card-body">
-                  <form
-                    class="flex flex-col gap-6"
-                    method="POST"
-                    action="/tasks/tasks"
-                  >
+                  <form class="flex flex-col gap-6" method="POST" action="">
+                    {{ form.hidden_tag() }}
+
+                    <div>
+                      <label
+                        for="input-label-with-helper-text"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >{{form.title.label}}</label
+                      >
+                      {{form.title(class='py-3 px-4 block w-full border-gray-200
+                      rounded-md text-sm focus:border-blue-600 focus:ring-0')}}
+                    </div>
+                    <div>
+                      <label
+                        for="input-label-with-helper-text"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >{{form.description.label}}</label
+                      >
+                      {{form.description(class='py-3 px-4 block w-full
+                      border-gray-200 rounded-md text-sm focus:border-blue-600
+                      focus:ring-0')}}
+                    </div>
+
+                    <div>
+                      <label
+                        for="input-label-with-helper-text"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >{{form.completed.label}}</label
+                      >
+                      {{form.completed(class='w-4 h-4 text-blue-600 bg-gray-100
+                      border-gray-300 rounded focus:ring-blue-500
+                      dark:focus:ring-blue-600 dark:ring-offset-gray-800
+                      focus:ring-2 dark:bg-gray-700 dark:border-gray-600')}}
+                    </div>
+                    <div>
+                      <label
+                        for="input-label-with-helper-text"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >{{form.created_date.label}}</label
+                      >
+                      {{form.created_date(class='py-3 px-4 block w-full
+                      border-gray-200 rounded-md text-sm focus:border-blue-600
+                      focus:ring-0')}}
+                    </div>
+
+                    <div>
+                      <label
+                        for="input-label-with-helper-text"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >{{form.due_date.label}}</label
+                      >
+                      {{form.due_date(class='py-3 px-4 block w-full
+                      border-gray-200 rounded-md text-sm focus:border-blue-600
+                      focus:ring-0')}}
+                    </div>
+
+                    <div>
+                      {{form.submit(class='btn text-sm text-white font-medium
+                      w-fit hover:bg-blue-700')}}
+                    </div>
+
                     <div>
                       <label
                         for="input-label-with-helper-text"
@@ -75,11 +131,6 @@
                         <!-- Options will be populated by JavaScript -->
                       </select>
                     </div>
-                    <input
-                      type="submit"
-                      class="btn text-sm text-white font-medium w-fit hover:bg-blue-700"
-                      value="Add new task"
-                    />
                   </form>
                 </div>
               </div>
