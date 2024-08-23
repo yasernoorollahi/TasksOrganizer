@@ -2,9 +2,9 @@ from flask import Flask, render_template, request,url_for, redirect, current_app
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_bcrypt import Bcrypt
 from common.db_setup_flask import DBSetup,db
-from blueprints.auth.routes import auth_bp
-from blueprints.dashboard.routes import dashboard_bp
-from blueprints.tasks.routes import tasks_bp
+from blueprints.auth.auth_routes import auth_bp
+from blueprints.dashboard.dashboard_routes import dashboard_bp
+from blueprints.tasks.task_routes import tasks_bp
 from models.user_mdl import User
 
 
