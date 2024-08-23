@@ -84,39 +84,6 @@
                       border-gray-200 rounded-md text-sm focus:border-blue-600
                       focus:ring-0')}}
                     </div>
-
-                    <div>
-                      {{form.submit(class='btn text-sm text-white font-medium
-                      w-fit hover:bg-blue-700')}}
-                    </div>
-
-                    <div>
-                      <label
-                        for="input-label-with-helper-text"
-                        class="block text-sm font-semibold mb-2 text-gray-600"
-                        >Title</label
-                      >
-                      <input
-                        type="text"
-                        id="content"
-                        name="content"
-                        class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-600 focus:ring-0"
-                        placeholder="Washing the dishes"
-                        aria-describedby="hs-input-helper-text"
-                      />
-                    </div>
-                    <label
-                      for="message"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >Description</label
-                    >
-                    <textarea
-                      id="description"
-                      rows="4"
-                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Write your description here..."
-                    ></textarea>
-
                     <div class="mb-3">
                       <label
                         for="taskAssignedTo"
@@ -130,6 +97,10 @@
                       >
                         <!-- Options will be populated by JavaScript -->
                       </select>
+                    </div>
+                    <div>
+                      {{form.submit(class='btn text-sm text-white font-medium
+                      w-fit hover:bg-blue-700')}}
                     </div>
                   </form>
                 </div>

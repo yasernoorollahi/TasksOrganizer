@@ -14,8 +14,16 @@ tasks_bp = Blueprint('tasks', __name__)
 def tasks():
     form = TaskForm()
     if form.validate_on_submit():
-        task_content= request.form['content']
-        new_task= Tasks(title=task_content,completed=1)
+        # task_content= request.form['content']
+        title = form.title.data
+        description = form.description.data
+        completed = form.completed.data
+        created_date  = form.created_date.data
+        due_date = form.due_date.data
+        # assigned_to = form.assigned_to.data
+        
+        new_task= Tasks(title= title,description=description, completed=completed, created_date=created_date, due_date=due_date )
+        # new_task= Tasks(title=task_content,completed=1)
         try:
             db.session.add(new_task)
             db.session.commit()
