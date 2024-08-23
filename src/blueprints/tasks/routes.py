@@ -22,7 +22,7 @@ def tasks():
             return 'there was an error adding new task'
     else:   
         page = request.args.get('page',1 , type=int)
-        tasks = Tasks.query.order_by(Tasks.date_created.desc()).paginate(page = page, per_page=5)
+        tasks = Tasks.query.order_by(Tasks.created_date.desc()).paginate(page = page, per_page=5)
         return render_template('tasks.html', tasks=tasks)
 
 

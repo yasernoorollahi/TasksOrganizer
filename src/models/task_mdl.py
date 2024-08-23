@@ -8,7 +8,7 @@ class Tasks(db.Model):
     title = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(120), nullable=True)
     completed = db.Column(db.Boolean, default=False)
-    date_created = db.Column(db.DateTime , default= datetime.now)
+    created_date = db.Column(db.DateTime , default= datetime.now)
     due_date = db.Column(db.DateTime , nullable =True)
     status =db.Column(Enum(TaskStatus) , default = TaskStatus.TODO) 
     priority = db.Column(Enum(PriorityLevel) , default = PriorityLevel.LOW)

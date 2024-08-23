@@ -75,7 +75,7 @@ def get_chart_data():
     
     
  
-    daily_tasks = Tasks.query.with_entities(func.date(Tasks.date_created).label('date'), func.count(Tasks.id).label('count')).group_by(func.date(Tasks.date_created)).all()
+    daily_tasks = Tasks.query.with_entities(func.date(Tasks.created_date).label('date'), func.count(Tasks.id).label('count')).group_by(func.date(Tasks.created_date)).all()
     
     labels = [str(task.date) for task in daily_tasks]  # Dates as strings
     values = [task.count for task in daily_tasks]  # Corresponding counts
