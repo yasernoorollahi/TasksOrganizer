@@ -15,4 +15,4 @@ async function loadUser() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadUser);
+// document.addEventListener('DOMContentLoaded', loadUser);

@@ -50,31 +50,11 @@ def buttons():
 
 
 
+
+
 @dashboard_bp.route('/chart-data')
 def get_chart_data():
-    # data ={
-    #     'Name' : 'Earnings This Month:',
-    #     'data' :[100,150,200,250,300,350,390,400]
-    # }
-    # data1 = {
-    #     'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-    #     'values': [30, 40, 35, 50, 49, 60, 70]
-    # }
-
-    # tasks = Todo.query.all()
-    # daily_tasks= Todo.query.group_by(Todo.date_created)
-    # daily_tasks.count()
     
-    # labels = [task.content for task in tasks]
-    # values = [task.date_created for  task in tasks]
-    
-    # tasks_data ={
-    #     'labels': labels,
-    #     'values': values
-    # }
-    
-    
- 
     daily_tasks = Tasks.query.with_entities(func.date(Tasks.created_date).label('date'), func.count(Tasks.id).label('count')).group_by(func.date(Tasks.created_date)).all()
     
     labels = [str(task.date) for task in daily_tasks]  # Dates as strings

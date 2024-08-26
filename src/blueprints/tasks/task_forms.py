@@ -11,6 +11,5 @@ class TaskForm(FlaskForm):
     completed= BooleanField()
     created_date =DateField()
     due_date = DateField()
-    assigned_to = User()
     submit = SubmitField('Add New Task')
     

@@ -54,6 +54,10 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
+
+
+
+
 @auth_bp.route('/get-all-users')
 @login_required
 def get_all_users():
