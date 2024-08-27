@@ -15,8 +15,8 @@ class DBSetup:
         if db_initialized:
             return
         print(colored('--- Database Initializing....','green', attrs=['bold']))
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/test.db'
-        # print(colored('--- Database Path = Users/yaser/Downloads/PythonProjects/FlaskIntroduction/src/test.db',color='green',attrs=['bold']))
+        app.config['SQLALCHEMY_DATABASE_URI'] =  f'sqlite:///{app.root_path}/test.db'
+        print(colored(f'--- Database Path = {app.root_path}/test.db',color='green',attrs=['bold']))
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         db.init_app(app)
         migrate = Migrate(app,db)

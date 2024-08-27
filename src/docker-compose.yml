@@ -6,7 +6,7 @@ services:
     ports:
       - '5001:5000'
     volumes:
-      - ./src:/app/src
+      - .:/app
     environment:
       - FLASK_ENV=development
-      - PYTHONPATH=/app/src
+      - PYTHONPATH=/app
