@@ -29,6 +29,7 @@ def before_request():
     current_app.login_manager= login_manager
  
 
+
 app.register_blueprint(auth_bp, url_prefix = '/auth',template_folder='templates')
 app.register_blueprint(dashboard_bp, url_prefix = '/dashboard', template_folder='templates')
 app.register_blueprint(tasks_bp, url_prefix='/tasks', template_folder = 'templates')
