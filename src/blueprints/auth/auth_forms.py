@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField 
+from wtforms import StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import InputRequired, Length, ValidationError
 from models.user_mdl import User
 
@@ -11,8 +11,9 @@ class LoginForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    username = StringField(validators=[InputRequired(),Length(min=4,max=20)] , render_kw={'placeholder': 'username'})
+    username = StringField(validators=[InputRequired(),Length(min=4,max=20)] ,  render_kw={'placeholder': 'username'})
     password = PasswordField(validators=[InputRequired(),Length(min=4,max=20)], render_kw={'placeholder': 'password'})
+    user_type = IntegerField(default=1)
     submit = SubmitField("register")
 
     def validate_username(self,username):

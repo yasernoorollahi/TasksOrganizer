@@ -54,7 +54,18 @@
                 focus:outline-none focus:ring-sky-500 sm:text-sm')}}
               </div>
             </div>
-
+            <div>
+              <label
+                for="password"
+                class="block text-sm font-medium text-gray-700"
+                >User Type</label
+              >
+              <div class="mt-1">
+                {{form.user_type(class='px-2 py-3 mt-1 block w-full rounded-md
+                border border-gray-300 shadow-sm focus:border-sky-500
+                focus:outline-none focus:ring-sky-500 sm:text-sm')}}
+              </div>
+            </div>
             <div>
               <label
                 for="password"
@@ -82,7 +93,7 @@
               Already have an account?
 
               <a
-                href="{{url_for('login')}}"
+                href="{{url_for('auth.login')}}"
                 class="border-b border-gray-500 border-dotted"
               >
                 Login</a
