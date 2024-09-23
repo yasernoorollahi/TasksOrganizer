@@ -8,6 +8,7 @@ from blueprints.tasks.task_routes import tasks_bp
 from models.user_mdl import User
 
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 
