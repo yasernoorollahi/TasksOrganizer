@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Check out the code from the Git repository
-                git url: 'https://your-git-repo-url.git', branch: 'main'
+                git url: 'https://github.com/yasernoorollahi/TasksOrganizer.git', branch: 'main'
             }
         }
 
